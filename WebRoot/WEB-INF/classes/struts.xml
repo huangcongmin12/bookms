@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 公用的jsp映射  -->
+	<package name="jsp" namespace="/admin" extends="struts-default" >
+		 <interceptors>
+			<interceptor name="isLogin" class="com.interceptor.IsLoginInterceptor"/>
+			<interceptor-stack name="loginInterceptor">
+				<interceptor-ref name="isLogin"/>
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="logger"/>
+			</interceptor-stack>
+		</interceptors>
+			
+	    <global-results>
+	      	<result name="login">/manager_login.jsp</result>
+	        <result name="error">/user_error.jsp</result>
+	    </global-results>
+	    
+		<action name="**">
+			<result name="success">/{1}.jsp</result>
+			<interceptor-ref name="loginInterceptor"/>
+		</action>
+	</package>
+	
+	
+	<package name="struts2" namespace="/" extends="struts-default" >
+		
+		<action name="*_login">
+			<result>/{1}_login.jsp</result>
+		</action>
+		
+		 
+		<action name="booksearch_view">
+			<result name="success">/booksearch_view.jsp</result>
+		</action>
+		
+	    <!-- 验证码 -->
+		<action name="rand" class="com.util.RandomAction">  
+		      <result type="stream">  
+		               <param name="contentType">image/jpeg</param>  
+		               <param name="inputName">inputStream</param>  
+		        </result>  
+		 </action> 
+		<!-- 管理员登录 -->
+		<action name="managerLogin" class="managerAction" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="error">/manager_login.jsp</result>
+		</action>
+		<!-- 管理员退出登录-->
+		<action name="loginOut" class="managerAction" method="loginOut">
+			<result name="success">/manager_login.jsp</result>
+		</action>
+		
+		<!-- 更新视图映射 -->
+		<action name="*_updateView" class="{1}Action" method="updateView">
+			<result name="success">/{1}_updateView.jsp</result>
+		</action>
+		<!-- 通用action -->
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="success">/{1}{2}_succ.jsp</result>
+			<result name="error">/{1}{2}_fail.jsp</result>
+			<result name="input">/{1}{2}_view.jsp</result>
+			<result name="reinput">/{1}_updateView.jsp</result>
+		</action>
+		<!-- 普通管理员修改密码视图 -->
+		<action name="manager_modifyView" class="managerAction" method="updateView">
+			<result name="success">/manager_modifyView.jsp</result>
+		</action>
+		
+		<!-- 读者登录 -->
+		<action name="studentLogin" class="studentAction" method="login">
+			<result name="success">/default.jsp</result>
+			<result name="input">/user_login.jsp</result>
+		</action>
+		<!-- 读者退出登录 -->
+		<action name="loginOut" class="studentAction" method="loginOut">
+			<result name="success">/user_login.jsp</result>
+		</action>
+		<!-- 读者修改密码视图 -->
+		<action name="student_modifypwd_view" class="studentAction" method="modifypwd_view">
+			<result name="success">/studentmodifypwd_view.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>    

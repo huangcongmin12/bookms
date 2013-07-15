@@ -1,0 +1,36 @@
+body {
+	font:13px Arial, Helvetica, sans-serif;
+	color: #000;
+	background-color: #EEF2FB;
+	margin: 0px;
+}
+#container {
+	width: 1200px;
+}
+H1 {
+	font-size: 13px;
+	margin: 0px;
+	width: 182px;
+	cursor: pointer;
+	height: 38px;
+	line-height: 20px;	
+}
+H1 a {
+	display: block;
+	width: 182px;
+	color: #000;
+	height: 30px;
+	text-decoration: none;
+	moz-outline-style: none;
+	background-image: url(../images/menu_bgs.gif);
+	background-repeat: repeat-x;
+	line-height: 30px;
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+}
+.content{
+	width: 182px;
+	height: 30px;
+	
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<s:set name="manager"  value="#session.manager"></s:set>
+<html>
+<head>
+<title>管理中心</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<s:if test="#manager">
+<frameset rows="64,*" frameborder="NO" border="0" framespacing="0">
+	<frame src="admin_top.jsp" noresize="noresize" frameborder="NO"
+		name="topFrame" scrolling="no" marginwidth="0" marginheight="0"
+		target="main" />
+	<frameset cols="200,*" rows="560,*" id="frame">
+		<frame src="left.jsp" name="leftFrame" noresize="noresize"
+			marginwidth="0" marginheight="0" frameborder="0" scrolling="no"
+			target="main" />
+		<frame src="right.htm" name="main" marginwidth="0" marginheight="0"
+			frameborder="0" scrolling="auto" target="_self" />
+	</frameset>
+	</head>
+
+	<noframes>
+		<body>
+		</body>
+	</noframes>
+</s:if>
+<s:else>
+	<%response.sendRedirect("admin/login.action"); %>
+</s:else>
+</html>

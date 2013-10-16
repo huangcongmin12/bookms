@@ -2,6 +2,6 @@ bookms
 ======
 
 图书管理系统<br>
-开发工具：MyEclipse
-相关技术：Struts2 + Spring + Hibernate + MySQL 
+开发工具：MyEclipse<br>
+相关技术：Struts2 + Spring + Hibernate + MySQL <br>
 项目描述：本项目结构采用分层思想。包括为表现层、业务层和数据访问层。功能上包括：图书管理；读者管理；借阅管理；预约管理；罚单管理；学生用户权限角色管理；及相关查询等功能。
